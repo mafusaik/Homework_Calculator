@@ -14,7 +14,7 @@ fun deleteBrackets(
             .replace(bracketGroup.value, "")
         expression.replace(
             bracketGroup.value,
-            calc(withoutBracketGroup, varCreator, repository).toString()
+            calculation(withoutBracketGroup, varCreator, repository).toString()
         )
     } else expression
 }

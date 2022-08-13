@@ -12,6 +12,6 @@ class VarCreator(private var repository: VarMapRepository) {
         stringVar.matches(Regex(Constants.SCALAR)) -> Scalar(stringVar)
         else -> repository.get(stringVar)?.let {
             repository.get(stringVar)
-        } ?: throw CalcException("incorrect string $stringVar")
+        } ?: throw CalcException("incorrect expression")
     }
 }

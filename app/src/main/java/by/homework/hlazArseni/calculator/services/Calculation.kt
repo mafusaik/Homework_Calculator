@@ -4,7 +4,7 @@ import by.homework.hlazArseni.calculator.constant.Constants
 import by.homework.hlazArseni.calculator.entity.Var
 import by.homework.hlazArseni.calculator.repository.VarMapRepository
 
-fun calc(
+fun calculation(
     inputExpression: String,
     varCreator: VarCreator,
     repository: VarMapRepository
