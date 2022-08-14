@@ -4,20 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
+import by.homework.hlazArseni.calculator.button_functions.allClearAction
+import by.homework.hlazArseni.calculator.button_functions.backSpaceAction
+import by.homework.hlazArseni.calculator.button_functions.equalsAction
+import by.homework.hlazArseni.calculator.button_functions.symbolAction
 import by.homework.hlazArseni.calculator.databinding.FragmentBinding
-import by.homework.hlazArseni.calculator.exception.CalcException
-import by.homework.hlazArseni.calculator.repository.VarMapRepository
-import by.homework.hlazArseni.calculator.services.VarCreator
-import by.homework.hlazArseni.calculator.services.calculation
-import com.google.android.material.snackbar.Snackbar
 
 
 class Fragment : Fragment() {
-
-    private val repository = VarMapRepository()
-    private val varCreator = VarCreator(repository)
 
     private var _binding: FragmentBinding? = null
     private val binding get() = requireNotNull(_binding)
@@ -89,42 +84,5 @@ class Fragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-    private fun symbolAction(view: View, binding: FragmentBinding) {
-        if (view is Button) {
-            binding.mathOperation.append(view.text)
-        }
-    }
-
-    private fun allClearAction(binding: FragmentBinding) {
-        binding.mathOperation.text = ""
-        binding.resultText.text = ""
-    }
-
-    private fun backSpaceAction(binding: FragmentBinding) {
-        val length = binding.mathOperation.length()
-        if (length > 0)
-            binding.mathOperation.text = binding.mathOperation.text.subSequence(0, length - 1)
-    }
-
-    private fun equalsAction(view: View, binding: FragmentBinding) {
-        binding.resultText.text = calculateResults(view, binding)
-    }
-
-    private fun calculateResults(view: View, binding: FragmentBinding): String {
-        val expression = binding.mathOperation.text.toString()
-        var result = ""
-        try {
-            result = calculation(expression, varCreator, repository).toString()
-        } catch (e: CalcException) {
-            Snackbar.make(view, e.message.toString(), Snackbar.LENGTH_INDEFINITE)
-                .setAction("clear") {
-                    allClearAction(binding)
-                }
-                .show()
-        }
-        return result
-    }
-
 }
 
