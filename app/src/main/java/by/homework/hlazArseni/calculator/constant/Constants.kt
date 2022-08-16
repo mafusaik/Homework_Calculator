@@ -6,6 +6,6 @@ class Constants {
         const val EXPRESSION_IN_BRACKETS = "\\([^()]+\\)"
         const val MATH_OPERATIONS = "(?<=[^{,+=*/-])[-+*/=]"
         const val SPACES = "\\s+"
-        const val SCALAR = "-?[0-9]+(\\.[0-9]+)?"
+        const val SCALAR = "-?[0-9]+(\\.[0-9]+)?+E?+(-?[0-9])?"
     }
 }
