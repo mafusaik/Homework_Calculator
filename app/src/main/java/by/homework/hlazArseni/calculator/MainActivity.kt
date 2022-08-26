@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, Fragment())
+            .add(R.id.fragment_container, CalculatorFragment())
             .addToBackStack(null)
             .commit()
     }
